@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 <#
 .DESCRIPTION
-    Configure the OSDCloudScriptsGUI PowerShell Module and start the OSDCloudScriptsGUI
+    Configure the CloudScriptsGUI PowerShell Module and start the CloudScriptsGUI
 
 .EXAMPLE
     Invoke-Expression (Invoke-WebRequest -Uri https://scripts.osdcloud.com)
@@ -96,10 +96,10 @@ else {
     }
 #endregion
 
-#region OSDCloudScriptsGUI
+#region CloudScriptsGUI
 
 
-# OSDCloudScriptsGUI
+# CloudScriptsGUI
     $ScriptGuiFileName = 'CloudScriptsGUI-main.zip'
     $ScriptGuiUrl = 'https://github.com/CloudDebugDK/CloudScriptsGUI/archive/refs/heads/main.zip'
 
@@ -113,10 +113,10 @@ else {
     Invoke-WebRequest -Uri $ScriptGuiUrl -OutFile $GUIOutFile
 
     if (Test-Path $GUIOutFile) {
-        Write-Host -ForegroundColor Green "[+] OSDCloudScriptsGUI downloaded to $GUIOutFile"
+        Write-Host -ForegroundColor Green "[+] CloudScriptsGUI downloaded to $GUIOutFile"
     }
     else {
-        Write-Host -ForegroundColor Red "[!] OSDCloudScriptsGUI could not be downloaded"
+        Write-Host -ForegroundColor Red "[!] CloudScriptsGUI could not be downloaded"
         Break
     }
 
@@ -128,10 +128,10 @@ else {
     }
     Expand-Archive -Path $GUIOutFile -DestinationPath $DestinationPath -Force
     if (Test-Path $DestinationPath) {
-        Write-Host -ForegroundColor Green "[+] OSDCloudScriptsGUI expanded to $DestinationPath"
+        Write-Host -ForegroundColor Green "[+] CloudScriptsGUI expanded to $DestinationPath"
     }
     else {
-        Write-Host -ForegroundColor Red "[!] OSDCloudScriptsGUI could not be expanded to $DestinationPath"
+        Write-Host -ForegroundColor Red "[!] CloudScriptsGUI could not be expanded to $DestinationPath"
         Break
     }
 
@@ -145,7 +145,7 @@ else {
     
     # PowerShell Module
     if ($isAdmin) {
-        $ModulePath = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\Modules\OSDCloudScriptsGUI"
+        $ModulePath = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\Modules\CloudScriptsGUI"
         if (Test-Path $ModulePath) {
             Remove-Item $ModulePath -Recurse -Force
         }
@@ -153,10 +153,10 @@ else {
         $SourceModuleRoot = Get-ChildItem -Path $DestinationPath -Directory | Select-Object -First 1 -ExpandProperty FullName
         Copy-Item -Path $SourceModuleRoot -Destination $ModulePath -Recurse -Force -ErrorAction SilentlyContinue
         if (Test-Path $ModulePath) {
-            Write-Host -ForegroundColor Green "[+] OSDCloudScriptsGUI Module copied to $ModulePath"
+            Write-Host -ForegroundColor Green "[+] CloudScriptsGUI Module copied to $ModulePath"
         }
         else {
-            Write-Host -ForegroundColor Red "[!] OSDCloudScriptsGUI Module could not be copied to $ModulePath"
+            Write-Host -ForegroundColor Red "[!] CloudScriptsGUI Module could not be copied to $ModulePath"
             Break
         }
         try {
@@ -170,7 +170,7 @@ else {
         }
     }
     else {
-        $ModulePath = "$env:TEMP\OSDCloudScriptsGUI\OSDCloudScriptsGUI-main\OSDCloudScriptsGUI.psm1"
+        $ModulePath = "$env:TEMP\CloudScriptsGUI\CloudScriptsGUI-main\CloudScriptsGUI.psm1"
         try {
             Import-Module $ModulePath -Force -ErrorAction Stop
             Write-Host -ForegroundColor Green "[+] Import-Module $ModulePath -Force"
@@ -182,13 +182,13 @@ else {
         }
     }
 
-    Write-Host -ForegroundColor Green "[+] Start-OSDCloudScriptsGUI -Path $ScriptFiles"
+    Write-Host -ForegroundColor Green "[+] Start-CloudScriptsGUI -Path $ScriptFiles"
 #endregion
 
 
 if ($isAdmin) {
     Write-Host -ForegroundColor Cyan "To start a new PowerShell session, type 'start powershell' and press enter"
-    Write-Host -ForegroundColor Cyan "Start-OSDCloudScriptsGUI can be run in the new PowerShell window"
+    Write-Host -ForegroundColor Cyan "Start-CloudScriptsGUI can be run in the new PowerShell window"
 }
 
-Start-OSDCloudScriptsGUI -Path $ScriptFiles
+Start-CloudScriptsGUI -Path $ScriptFiles

@@ -1,15 +1,15 @@
-function Start-OSDCloudScriptsGUI {
+function Start-CloudScriptsGUI {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $false)]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
-        [string]$Path = "$env:Temp\OSDCloudScripts\OSDCloudScripts-main"
+        [string]$Path = "$env:Temp\CloudScripts\CloudScripts-main"
     )
     #================================================
     #   Set Global Variables
     #================================================
     $Global:OSDPadBranding = @{
-        Title = 'OSDCloudScriptsGUI'
+        Title = 'CloudScriptsGUI'
         Color = '#01786A'
     }
     #=================================================
@@ -24,7 +24,7 @@ function Start-OSDCloudScriptsGUI {
     #=================================================
     #   Create Object
     #=================================================
-    $Global:OSDCloudScriptsGUI = foreach ($Item in $ScriptFiles) {
+    $Global:CloudScriptsGUI = foreach ($Item in $ScriptFiles) {
         $FullName = $Item.FullName
         $DirectoryName = $Item.DirectoryName
         $RelativePath = $Item.FullName -replace [regex]::Escape("$Path\"), ''
@@ -55,9 +55,9 @@ function Start-OSDCloudScriptsGUI {
         New-Object -TypeName PSObject -Property $ObjectProperties
     }
     #=================================================
-    #   OSDCloudScriptsGUI.ps1
+    #   CloudScriptsGUI.ps1
     #=================================================
     & "$($MyInvocation.MyCommand.Module.ModuleBase)\Project\MainWindow.ps1"
     #=================================================
 }
-Export-ModuleMember -Function Start-OSDCloudScriptsGUI
+Export-ModuleMember -Function Start-CloudScriptsGUI

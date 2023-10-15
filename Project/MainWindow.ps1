@@ -269,26 +269,26 @@ function Show-PowershellWindow() {
 function Set-ScriptIndex {
     $formMainWindowControlScriptIndex.Items.Clear()
     $formMainWindowControlScriptIndex.SelectedIndex = 0
-    $Global:OSDCloudScriptsGUI | Where-Object {$_.Script -match $formMainWindowControlScriptFilter.Text} | Where-Object {$_.Content -match $formMainWindowControlScriptContains.Text} | ForEach-Object {
+    $Global:CloudScriptsGUI | Where-Object {$_.Script -match $formMainWindowControlScriptFilter.Text} | Where-Object {$_.Content -match $formMainWindowControlScriptContains.Text} | ForEach-Object {
         $formMainWindowControlScriptIndex.Items.Add($_.Script) | Out-Null
     }
 }
 function Set-ScriptFilter {
     $formMainWindowControlScriptIndex.Items.Clear()
     $formMainWindowControlScriptIndex.SelectedIndex = 0
-    $Global:OSDCloudScriptsGUI | Where-Object {$_.Script -match $formMainWindowControlScriptFilter.Text} | ForEach-Object {
+    $Global:CloudScriptsGUI | Where-Object {$_.Script -match $formMainWindowControlScriptFilter.Text} | ForEach-Object {
         $formMainWindowControlScriptIndex.Items.Add($_.Script) | Out-Null
     }
 }
 function Set-ScriptContains {
     $formMainWindowControlScriptIndex.Items.Clear()
     $formMainWindowControlScriptIndex.SelectedIndex = 0
-    $Global:OSDCloudScriptsGUI | Where-Object {$_.Content -match $formMainWindowControlScriptContains.Text} | ForEach-Object {
+    $Global:CloudScriptsGUI | Where-Object {$_.Content -match $formMainWindowControlScriptContains.Text} | ForEach-Object {
         $formMainWindowControlScriptIndex.Items.Add($_.Script) | Out-Null
     }
 }
 function Set-ScriptContent {
-    $Global:CurrentScript = $Global:OSDCloudScriptsGUI | Where-Object {$_.Script -eq $formMainWindowControlScriptIndex.SelectedValue}
+    $Global:CurrentScript = $Global:CloudScriptsGUI | Where-Object {$_.Script -eq $formMainWindowControlScriptIndex.SelectedValue}
     if ($Global:CurrentScript) {
         $formMainWindowControlScriptContent.Text = $Global:CurrentScript.Content
     }
@@ -443,9 +443,9 @@ $formMainWindowControlStartButton.add_Click({
 #================================================
 #   Customizations
 #================================================
-[string]$ModuleVersion = Get-Module -Name OSDCloudScriptsGUI | Sort-Object -Property Version | Select-Object -ExpandProperty Version -Last 1
-$LocalRepository = $Global:OSDCloudScriptsGUI | Select-Object -First 1 -ExpandProperty LocalRepository
-$formMainWindow.Title = "OSDCloudScriptsGUI at $LocalRepository"
+[string]$ModuleVersion = Get-Module -Name CloudScriptsGUI | Sort-Object -Property Version | Select-Object -ExpandProperty Version -Last 1
+$LocalRepository = $Global:CloudScriptsGUI | Select-Object -First 1 -ExpandProperty LocalRepository
+$formMainWindow.Title = "CloudScriptsGUI at $LocalRepository"
 #================================================
 #   Hide Windows
 #================================================

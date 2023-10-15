@@ -19,8 +19,8 @@
 #>
 [CmdletBinding()]
 param(
-    [System.String] $Owner = 'OSDeploy',
-    [System.String] $Repo = 'OSDCloudScripts'
+    [System.String] $Owner = 'CloudDebugDK',
+    [System.String] $Repo = 'Debug'
 )
 # Set ProgressPreference to SilentlyContinue
 $ProgressPreference = 'SilentlyContinue'
@@ -101,7 +101,7 @@ else {
 
 # OSDCloudScriptsGUI
     $ScriptGuiFileName = 'OSDCloudScriptsGUI.zip'
-    $ScriptGuiUrl = 'https://github.com/OSDeploy/OSDCloudScriptsGUI/archive/refs/heads/main.zip'
+    $ScriptGuiUrl = 'https://github.com/CloudDebugDK/CloudScriptsGUI/archive/refs/heads/main.zip'
 
     $GUIOutFile = Join-Path $env:TEMP $ScriptGuiFileName
     # Remove existing Zip file

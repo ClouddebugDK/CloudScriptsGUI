@@ -25,7 +25,7 @@ param(
 # Set ProgressPreference to SilentlyContinue
 $ProgressPreference = 'SilentlyContinue'
 
-$ScriptName = 'scripts.osdcloud.com'
+$ScriptName = 'scripts.clouddebug.dk'
 $ScriptVersion = '23.9.28.1'
 Write-Host -ForegroundColor Cyan "[i] $ScriptName version $ScriptVersion"
 

@@ -100,7 +100,7 @@ else {
 
 
 # OSDCloudScriptsGUI
-    $ScriptGuiFileName = 'OSDCloudScriptsGUI.zip'
+    $ScriptGuiFileName = 'CloudScriptsGUI-main.zip'
     $ScriptGuiUrl = 'https://github.com/CloudDebugDK/CloudScriptsGUI/archive/refs/heads/main.zip'
 
     $GUIOutFile = Join-Path $env:TEMP $ScriptGuiFileName
